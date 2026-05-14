@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOLDABLE CUP | Premium Silicone</title>
+    <style>
+        /* Обнулення та база */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        :root {
+            --bg: #000;
+            --surface: #111;
+            --accent: #fff;
+            --text-dim: #888;
+            --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Навігація */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Hero Секція */
+        .hero {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            min-height: 70vh;
+            gap: 60px;
+            padding: 40px 0;
+        }
+
+        .hero-content { flex: 1; }
+        
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 450px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Стилізована чашка (SVG) */
+        .cup-svg {
+            width: 100%;
+            max-width: 500px;
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.1));
+        }
+
+        /* Кнопка */
+        .btn {
+            background: var(--accent);
+            color: #000;
+            padding: 22px 50px;
+            border-radius: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #ccc;
+            transform: translateY(-2px);
+        }
+
+        /* Опис / Характеристики */
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 80px 0;
+        }
+
+        .spec-card {
+            background: var(--surface);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .spec-card:hover { background: #161616; }
+
+        .spec-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .spec-card p {
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Форма (Модалка) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            background: var(--surface);
+        }
+
+        input {
+            width: 100%;
+            padding: 20px;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* Футер */
+        footer {
+            padding: 100px 0 60px;
+            border-top: 1px solid #222;
+            text-align: left;
+        }
+
+        .footer-name {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-top: 10px;
+            line-height: 1;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column; text-align: center; gap: 40px; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-image { order: -1; }
+        }
+
+        @media (max-width: 480px) {
+            nav { padding: 20px 0; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .spec-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="logo">Cup.Fold</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Твоя чашка — нуль місця.</h1>
+            <p>Багаторазова чашка-трансформер. Виконана з харчового силікону Platinum Grade. Складається до товщини 3 сантиметрів за один рух. Жодного пластику, тільки функціональність.</p>
+            <button class="btn" onclick="toggleModal(true)">Замовити</button>
+        </div>
+        
+        <div class="hero-image">
+            <!-- Сучасна векторна ілюстрація чашки -->
+            <svg class="cup-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect x="60" y="40" width="80" height="110" rx="4" fill="#1a1a1a" stroke="white" stroke-width="1.5"/>
+                <rect x="55" y="35" width="90" height="12" rx="2" fill="white"/>
+                <path d="M60 65 H140" stroke="#333" stroke-width="1"/>
+                <path d="M60 90 H140" stroke="#333" stroke-width="1"/>
+                <path d="M60 115 H140" stroke="#333" stroke-width="1"/>
+                <circle cx="100" cy="41" r="2" fill="#000"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="specs">
+        <div class="spec-card">
+            <h3>Матеріал</h3>
+            <p>100% харчовий силікон. Не виділяє токсинів при контакті з окропом. Не вбирає запах кави чи чаю.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Габарити</h3>
+            <p>Об'єм 350 мл у розгорнутому стані. У складеному — ідеальний диск, що влізає в кишеню куртки або худі.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Витривалість</h3>
+            <p>Температурний режим від -50°C до +200°C. Можна використовувати в мікрохвильовці та мити в посудомийній машині.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: var(--text-dim); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Розробка проекту</p>
+        <div class="footer-name">ЦАПЕНКО ВЛАДИСЛАВ</div>
+    </footer>
+</div>
+
+<!-- Модалка -->
+<div class="modal" id="orderModal">
+    <div class="modal-content">
+        <h2 style="margin-bottom: 25px; text-transform: uppercase;">Дані для доставки</h2>
+        <input type="text" placeholder="Ім'я" id="name">
+        <input type="tel" placeholder="Номер телефону" id="phone">
+        <button class="btn" style="width: 100%;" onclick="confirmOrder()">Підтвердити</button>
+        <p style="text-align: center; margin-top: 20px; color: var(--text-dim); cursor: pointer; font-size: 0.8rem;" onclick="toggleModal(false)">СКАСУВАТИ</p>
+    </div>
+</div>
+
+<script>
+    function toggleModal(show) {
+        document.getElementById('orderModal').style.display = show ? 'flex' : 'none';
+    }
+
+    function confirmOrder() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        if(name && phone) {
+            alert('Замовлення прийнято. Владислав зв’яжеться з вами.');
+            toggleModal(false);
+        } else {
+            alert('Заповни поля');
+        }
+    }
+
+    window.onclick = function(e) {
+        if (e.target == document.getElementById('orderModal')) toggleModal(false);
+    }
+</script>
+
+</body>
+</html>
